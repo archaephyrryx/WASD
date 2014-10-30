@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 #WASD Interpreter
-#Version 1.1
+#Customized by archaephyrryx
 import sys
+
 def wasd(code):
   array = [0] * 1000000
   pointer = 0
@@ -16,7 +17,7 @@ def wasd(code):
      elif code[x] == "d": pointer += 1
      elif code[x] == "s": array[pointer] -= 1
      elif code[x] == "w": array[pointer] += 1
-     elif code[x] == "e": print(chr(array[pointer]))
+     elif code[x] == "e": sys.stdout.write(chr(array[pointer]))
      elif code[x] == "q": 
 	try: array[pointer] = input("Input: ")
 	except: print "Input must be an integer"
@@ -30,7 +31,7 @@ def wasd(code):
     	     elif code[x] == "s": array[pointer] -= 1
      	     elif code[x] == "w": array[pointer] += 1
      	     elif code[x] == "e": 
-		try:print(chr(array[pointer]))
+		try:sys.stdout.write(chr(array[pointer]))
 		except:break
 	     elif code[x] == "(":
 		while code[x] != ")":x += 1	
@@ -47,7 +48,9 @@ try:
   if ".wasd" not in sys.argv[1]:
     print("Not a valid WASD file")
   with open(sys.argv[1], 'r') as code: 
-	try:wasd(code.read())
+	try:
+	    wasd(code.read())
+	    sys.stdout.write('\n')
 	except:pass
 except:
     print "Useage: python wasd.py <file.wasd>"
